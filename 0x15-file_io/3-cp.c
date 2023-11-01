@@ -9,7 +9,7 @@ char *create_buffer(char *size)
 
 	if (buffer == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't allocate buffer of size %s\n", size);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", size);
 		exit(99);
 	}
 	return (buffer);
@@ -22,7 +22,7 @@ void close_file(int cf)
 
 	if (c == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close file descriptor %d\n", cf);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", cf);
 		exit(100);
 	}
 }
@@ -40,7 +40,7 @@ void copy_file(char *src_file, char *dst_file)
 
 	if (src_fd == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open source file %s\n", src_file);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_file);
 		exit(98);
 	}
 
@@ -48,7 +48,7 @@ void copy_file(char *src_file, char *dst_file)
 
 	if (dst_fd == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open destination file %s\n", dst_file);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", dst_file);
 		close_file(src_fd);
 		exit(99);
 	}
@@ -65,7 +65,7 @@ void copy_file(char *src_file, char *dst_file)
 
 		if (bytes_written != bytes_read)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to destination file %s\n", dst_file);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dst_file);
 			free(buffer);
 			close_file(src_fd);
 			close_file(dst_fd);
