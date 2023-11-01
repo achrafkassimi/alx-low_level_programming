@@ -34,7 +34,7 @@ void copy_file(char *src_file, char *dst_file)
 	char *buffer;
 	int bytes_read = 0;
 	int bytes_written = 0;
-	
+
 	/* Open the source and destination files. */
 	int src_fd = open(src_file, O_RDONLY);
 
@@ -58,7 +58,7 @@ void copy_file(char *src_file, char *dst_file)
 
 	/* Read from the source file and write to the destination file until the end of the source file is reached. */
 	bytes_read = read(src_fd, buffer, 1024);
-	
+
 	while (bytes_read > 0)
 	{
 		bytes_written = write(dst_fd, buffer, bytes_read);
